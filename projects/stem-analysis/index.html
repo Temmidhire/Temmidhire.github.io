@@ -1,182 +1,131 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <title>STEM Education Analysis | Temidire Ogunbekun</title>
-
-    <style>
-
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            background: #f5f7fa;
-            color: #172033;
-        }
-
-        header {
-            background: #111827;
-            color: white;
-            padding: 60px 20px;
-        }
-
-        header h1 {
-            max-width: 1000px;
-            margin: auto;
-            font-size: 38px;
-        }
-
-        header p {
-            max-width: 1000px;
-            margin: 15px auto;
-            color: #cbd5e1;
-            font-size: 18px;
-        }
-
-        .container {
-            max-width: 1000px;
-            margin: auto;
-            padding: 50px 20px;
-        }
-
-        .section {
-            background: white;
-            padding: 30px;
-            margin-bottom: 25px;
-            border-radius: 12px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.06);
-        }
-
-        .dashboard {
-            min-height: 400px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background: #eef2f7;
-            border-radius: 10px;
-            text-align: center;
-        }
-
-        .button {
-            display: inline-block;
-            padding: 12px 20px;
-            background: #2563eb;
-            color: white;
-            text-decoration: none;
-            border-radius: 6px;
-            margin-right: 10px;
-        }
-
-        .back {
-            display: inline-block;
-            margin-bottom: 30px;
-            text-decoration: none;
-            color: #2563eb;
-        }
-
-    </style>
-
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>STEM Education Among Minorities | Temidire Ogunbekun</title>
+<script src="https://cdn.plot.ly/plotly-2.35.2.min.js"></script>
+<style>
+:root{--ink:#111827;--muted:#64748b;--line:#e2e8f0;--bg:#f5f7fb;--card:#fff;--accent:#2563eb}
+*{box-sizing:border-box} body{margin:0;font-family:Inter,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;background:var(--bg);color:var(--ink)}
+.hero{background:#111827;color:#fff;padding:48px 22px}.wrap{max-width:1180px;margin:auto}.hero h1{font-size:clamp(30px,5vw,48px);margin:0 0 10px}.hero p{color:#cbd5e1;max-width:820px;line-height:1.6;margin:0}
+.nav{margin-top:22px}.nav a{color:#bfdbfe;text-decoration:none;margin-right:18px;font-size:14px}
+.controls{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin:26px 0}.control{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:14px}.control label{display:block;font-size:12px;font-weight:700;color:var(--muted);margin-bottom:7px;text-transform:uppercase;letter-spacing:.06em}.control select{width:100%;padding:10px;border:1px solid var(--line);border-radius:8px;background:#fff}
+.kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}.kpi{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:20px}.kpi .label{color:var(--muted);font-size:13px}.kpi .value{font-size:30px;font-weight:800;margin-top:7px}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-top:18px}.card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:18px}.card h2{font-size:19px;margin:0 0 4px}.sub{color:var(--muted);font-size:13px;margin-bottom:8px}.plot{height:390px}
+.full{margin-top:18px}.findings{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}.finding{padding:18px;background:#f8fafc;border-radius:10px;border:1px solid var(--line);line-height:1.55}
+footer{padding:35px 22px;color:var(--muted);font-size:13px}.source{font-size:12px;color:var(--muted);margin-top:15px}
+@media(max-width:800px){.controls,.kpis,.grid,.findings{grid-template-columns:1fr}.plot{height:330px}}
+</style>
 </head>
-
 <body>
-
-<header>
-
-    <h1>STEM Education Analysis</h1>
-
-    <p>
-        Statistical analysis of STEM education data using
-        regression-based approaches.
-    </p>
-
+<header class="hero">
+<div class="wrap">
+<h1>STEM Education Among Minorities</h1>
+<p>Interactive analysis of student gender distribution, STEM/non-STEM categories and institutional patterns across Lagos State Polytechnic and Lagos State University.</p>
+<div class="nav"><a href="../../index.html">← Portfolio</a><a href="#analysis">Analysis</a><a href="#findings">Findings</a></div>
+</div>
 </header>
 
-<div class="container">
-
-    <a class="back" href="../../index.html">
-        ← Back to Portfolio
-    </a>
-
-    <div class="section">
-
-        <h2>Project Overview</h2>
-
-        <p>
-            This project investigates patterns within STEM education
-            data and applies statistical analysis to identify
-            relationships between relevant variables.
-        </p>
-
-    </div>
-
-    <div class="section">
-
-        <h2>Interactive Dashboard</h2>
-
-        <div class="dashboard">
-
-            <div>
-
-                <h3>Dashboard Coming Soon</h3>
-
-                <p>
-                    The interactive visualization will be embedded here.
-                </p>
-
-            </div>
-
-        </div>
-
-    </div>
-
-    <div class="section">
-
-        <h2>Methodology</h2>
-
-        <ul>
-
-            <li>Data preparation and cleaning</li>
-
-            <li>Exploratory data analysis</li>
-
-            <li>Statistical modelling</li>
-
-            <li>Regression analysis</li>
-
-            <li>Data visualization</li>
-
-        </ul>
-
-    </div>
-
-    <div class="section">
-
-        <h2>Tools</h2>
-
-        <p>
-            R · RStudio · Statistical Analysis · Data Visualization
-        </p>
-
-    </div>
-
-    <div class="section">
-
-        <h2>Project Resources</h2>
-
-        <a class="button" href="#">
-            View Analysis
-        </a>
-
-        <a class="button" href="#">
-            GitHub Repository
-        </a>
-
-    </div>
-
+<main class="wrap">
+<div class="controls">
+<div class="control"><label>Institution</label><select id="institution"></select></div>
+<div class="control"><label>Year</label><select id="year"></select></div>
+<div class="control"><label>Category</label><select id="category"></select></div>
 </div>
 
-</body>
+<section class="kpis">
+<div class="kpi"><div class="label">Total students</div><div class="value" id="kTotal">—</div></div>
+<div class="kpi"><div class="label">Female students</div><div class="value" id="kFemale">—</div></div>
+<div class="kpi"><div class="label">Male students</div><div class="value" id="kMale">—</div></div>
+<div class="kpi"><div class="label">Female representation</div><div class="value" id="kShare">—</div></div>
+</section>
 
+<section id="analysis" class="grid">
+<div class="card"><h2>Male vs Female Students</h2><div class="sub">Aggregated by selected filters</div><div id="genderPlot" class="plot"></div></div>
+<div class="card"><h2>Female Representation by Department</h2><div class="sub">Percentage of students who are female</div><div id="deptPlot" class="plot"></div></div>
+<div class="card"><h2>STEM vs Non-STEM</h2><div class="sub">Student population by category</div><div id="categoryPlot" class="plot"></div></div>
+<div class="card"><h2>Student Gender Correlation</h2><div class="sub">Pearson correlation calculated from the filtered rows</div><div id="corrPlot" class="plot"></div></div>
+</section>
+
+<section class="card full">
+<h2>Research Context</h2>
+<p>The original study used Pearson, Spearman and Kendall correlation alongside linear regression and visualized the results with scatter, box and density plots. This portfolio dashboard uses the underlying institutional CSV data to make the descriptive analysis interactive.</p>
+<p class="source">Source: <em>Visualisation of Data Analysis for STEM Education Among Minorities</em> and the accompanying LASPOTECH/LASU datasets.</p>
+</section>
+
+<section id="findings" class="card full">
+<h2>Key Findings from the Research</h2>
+<div class="findings">
+<div class="finding"><strong>LASPOTECH:</strong> the paper reports a Pearson correlation of 0.570063 between male and female students.</div>
+<div class="finding"><strong>LASU:</strong> the paper reports a Pearson correlation of 0.8318226 between male and female students.</div>
+<div class="finding"><strong>Model results:</strong> the paper reports 52.4% accuracy for the LASPOTECH regression result and 34.08% for LASU.</div>
+</div>
+</section>
+</main>
+
+<footer><div class="wrap">Temidire Ogunbekun · Data Analysis Portfolio · GitHub Pages</div></footer>
+
+<script>
+const DATA = [{"institution": "LASPOTECH", "department": "Management and Busiiness studies", "year": "2014", "category": "Non-stem", "male": 793.0, "female": 1163.0, "total": 1956.0, "academic_male": 48.0, "academic_female": 5.0, "nonacademic_male": 0.0, "nonacademic_female": 0.0}, {"institution": "LASPOTECH", "department": "Agriculture", "year": "2014", "category": "Stem", "male": 104.0, "female": 211.0, "total": 315.0, "academic_male": 23.0, "academic_female": 2.0, "nonacademic_male": 4.0, "nonacademic_female": 1.0}, {"institution": "LASPOTECH", "department": "Engineering", "year": "2014", "category": "Stem", "male": 93.0, "female": 648.0, "total": 741.0, "academic_male": 46.0, "academic_female": 4.0, "nonacademic_male": 22.0, "nonacademic_female": 6.0}, {"institution": "LASPOTECH", "department": "Technology", "year": "2014", "category": "Stem", "male": 516.0, "female": 823.0, "total": 1339.0, "academic_male": 22.0, "academic_female": 17.0, "nonacademic_male": 3.0, "nonacademic_female": 9.0}, {"institution": "LASPOTECH", "department": "Enviromental Studies", "year": "2014", "category": "Stem", "male": 160.0, "female": 490.0, "total": 650.0, "academic_male": 34.0, "academic_female": 3.0, "nonacademic_male": 5.0, "nonacademic_female": 1.0}, {"institution": "LASPOTECH", "department": "Management and Busiiness studies", "year": "2015", "category": "Non-stem", "male": 1254.0, "female": 1713.0, "total": 2967.0, "academic_male": 48.0, "academic_female": 5.0, "nonacademic_male": 0.0, "nonacademic_female": 0.0}, {"institution": "LASPOTECH", "department": "Agriculture", "year": "2015", "category": "Stem", "male": 166.0, "female": 154.0, "total": 320.0, "academic_male": 23.0, "academic_female": 2.0, "nonacademic_male": 4.0, "nonacademic_female": 1.0}, {"institution": "LASPOTECH", "department": "Engineering", "year": "2015", "category": "Stem", "male": 797.0, "female": 100.0, "total": 897.0, "academic_male": 46.0, "academic_female": 4.0, "nonacademic_male": 22.0, "nonacademic_female": 6.0}, {"institution": "LASPOTECH", "department": "Technology", "year": "2015", "category": "Stem", "male": 393.0, "female": 740.0, "total": 1133.0, "academic_male": 22.0, "academic_female": 17.0, "nonacademic_male": 3.0, "nonacademic_female": 9.0}, {"institution": "LASPOTECH", "department": "Enviromental Studies", "year": "2015", "category": "Stem", "male": 476.0, "female": 228.0, "total": 704.0, "academic_male": 34.0, "academic_female": 3.0, "nonacademic_male": 5.0, "nonacademic_female": 1.0}, {"institution": "LASPOTECH", "department": "Management and Busiiness studies", "year": "2016", "category": "Non-stem", "male": 1209.0, "female": 1455.0, "total": 2664.0, "academic_male": 50.0, "academic_female": 7.0, "nonacademic_male": 0.0, "nonacademic_female": 0.0}, {"institution": "LASPOTECH", "department": "Agriculture", "year": "2016", "category": "Stem", "male": 230.0, "female": 214.0, "total": 444.0, "academic_male": 22.0, "academic_female": 3.0, "nonacademic_male": 1.0, "nonacademic_female": 3.0}, {"institution": "LASPOTECH", "department": "Engineering", "year": "2016", "category": "Stem", "male": 1068.0, "female": 125.0, "total": 1193.0, "academic_male": 49.0, "academic_female": 4.0, "nonacademic_male": 20.0, "nonacademic_female": 6.0}, {"institution": "LASPOTECH", "department": "Technology", "year": "2016", "category": "Stem", "male": 318.0, "female": 476.0, "total": 794.0, "academic_male": 22.0, "academic_female": 20.0, "nonacademic_male": 2.0, "nonacademic_female": 8.0}, {"institution": "LASPOTECH", "department": "Enviromental Studies", "year": "2016", "category": "Stem", "male": 588.0, "female": 239.0, "total": 827.0, "academic_male": 35.0, "academic_female": 4.0, "nonacademic_male": 2.0, "nonacademic_female": 1.0}, {"institution": "LASU", "department": "Arts", "year": "2014", "category": "Non-stem", "male": 606.0, "female": 819.0, "total": 1425.0, "academic_male": 0, "academic_female": 0, "nonacademic_male": 12.0, "nonacademic_female": 20.0}, {"institution": "LASU", "department": "Education", "year": "2014", "category": "Non-stem", "male": 768.0, "female": 788.0, "total": 1556.0, "academic_male": 0, "academic_female": 0, "nonacademic_male": 15.0, "nonacademic_female": 20.0}, {"institution": "LASU", "department": "Engineering", "year": "2014", "category": "Stem", "male": 379.0, "female": 37.0, "total": 416.0, "academic_male": 0, "academic_female": 0, "nonacademic_male": 153.0, "nonacademic_female": 77.0}, {"institution": "LASU", "department": "Law", "year": "2014", "category": "Non-stem", "male": 292.0, "female": 298.0, "total": 590.0, "academic_male": 0, "academic_female": 0, "nonacademic_male": 15.0, "nonacademic_female": 19.0}, {"institution": "LASU", "department": "College of Medicine", "year": "2014", "category": "Mid-stem", "male": 287.0, "female": 253.0, "total": 540.0, "academic_male": 0, "academic_female": 0, "nonacademic_male": 0.0, "nonacademic_female": 0.0}, {"institution": "LASU", "department": "Social Sciences", "year": "2014", "category": "Non-stem", "male": 445.0, "female": 250.0, "total": 695.0, "academic_male": 0, "academic_female": 0, "nonacademic_male": 19.0, "nonacademic_female": 22.0}, {"institution": "LASU", "department": "Sciences", "year": "2014", "category": "Stem", "male": 900.0, "female": 752.0, "total": 1652.0, "academic_male": 0, "academic_female": 0, "nonacademic_male": 57.0, "nonacademic_female": 45.0}, {"institution": "LASU", "department": "Management Sciences", "year": "2014", "category": "Non-stem", "male": 1225.0, "female": 1177.0, "total": 2402.0, "academic_male": 0, "academic_female": 0, "nonacademic_male": 8.0, "nonacademic_female": 19.0}, {"institution": "LASU", "department": "School of Communication", "year": "2014", "category": "Non-stem", "male": 198.0, "female": 401.0, "total": 599.0, "academic_male": 0, "academic_female": 0, "nonacademic_male": 14.0, "nonacademic_female": 15.0}, {"institution": "LASU", "department": "Transport", "year": "2014", "category": "Non-stem", "male": 63.0, "female": 20.0, "total": 83.0, "academic_male": 0, "academic_female": 0, "nonacademic_male": 15.0, "nonacademic_female": 6.0}, {"institution": "LASU", "department": "Arts", "year": "2015", "category": "Non-stem", "male": 533.0, "female": 777.0, "total": 1310.0, "academic_male": 0, "academic_female": 0, "nonacademic_male": 12.0, "nonacademic_female": 20.0}, {"institution": "LASU", "department": "Education", "year": "2015", "category": "Non-stem", "male": 717.0, "female": 778.0, "total": 1495.0, "academic_male": 0, "academic_female": 0, "nonacademic_male": 15.0, "nonacademic_female": 20.0}, {"institution": "LASU", "department": "Engineering", "year": "2015", "category": "Stem", "male": 425.0, "female": 42.0, "total": 467.0, "academic_male": 0, "academic_female": 0, "nonacademic_male": 153.0, "nonacademic_female": 77.0}, {"institution": "LASU", "department": "Law", "year": "2015", "category": "Non-stem", "male": 170.0, "female": 183.0, "total": 353.0, "academic_male": 0, "academic_female": 0, "nonacademic_male": 15.0, "nonacademic_female": 19.0}, {"institution": "LASU", "department": "College of Medicine", "year": "2015", "category": "Mid-stem", "male": 549.0, "female": 245.0, "total": 794.0, "academic_male": 0, "academic_female": 0, "nonacademic_male": 0.0, "nonacademic_female": 0.0}, {"institution": "LASU", "department": "Social Sciences", "year": "2015", "category": "Non-stem", "male": 582.0, "female": 331.0, "total": 913.0, "academic_male": 0, "academic_female": 0, "nonacademic_male": 19.0, "nonacademic_female": 22.0}, {"institution": "LASU", "department": "Science", "year": "2015", "category": "Stem", "male": 933.0, "female": 743.0, "total": 1676.0, "academic_male": 0, "academic_female": 0, "nonacademic_male": 57.0, "nonacademic_female": 45.0}, {"institution": "LASU", "department": "Management Sciences", "year": "2015", "category": "Non-stem", "male": 478.0, "female": 875.0, "total": 1353.0, "academic_male": 0, "academic_female": 0, "nonacademic_male": 8.0, "nonacademic_female": 19.0}, {"institution": "LASU", "department": "School of Communication", "year": "2015", "category": "Non-stem", "male": 130.0, "female": 279.0, "total": 409.0, "academic_male": 0, "academic_female": 0, "nonacademic_male": 14.0, "nonacademic_female": 15.0}, {"institution": "LASU", "department": "Transport", "year": "2015", "category": "Non-stem", "male": 380.0, "female": 25.0, "total": 405.0, "academic_male": 0, "academic_female": 0, "nonacademic_male": 15.0, "nonacademic_female": 6.0}, {"institution": "LASU", "department": "Arts", "year": "2016", "category": "Non-stem", "male": 721.0, "female": 1002.0, "total": 1723.0, "academic_male": 0, "academic_female": 0, "nonacademic_male": 19.0, "nonacademic_female": 12.0}, {"institution": "LASU", "department": "Education", "year": "2016", "category": "Non-stem", "male": 840.0, "female": 975.0, "total": 1815.0, "academic_male": 0, "academic_female": 0, "nonacademic_male": 17.0, "nonacademic_female": 24.0}, {"institution": "LASU", "department": "Engineering", "year": "2016", "category": "Stem", "male": 503.0, "female": 57.0, "total": 560.0, "academic_male": 0, "academic_female": 0, "nonacademic_male": 21.0, "nonacademic_female": 16.0}, {"institution": "LASU", "department": "Law", "year": "2016", "category": "Non-stem", "male": 170.0, "female": 212.0, "total": 382.0, "academic_male": 0, "academic_female": 0, "nonacademic_male": 11.0, "nonacademic_female": 22.0}, {"institution": "LASU", "department": "College of Medicine", "year": "2016", "category": "Mid-stem", "male": 284.0, "female": 273.0, "total": 557.0, "academic_male": 0, "academic_female": 0, "nonacademic_male": 140.0, "nonacademic_female": 121.0}, {"institution": "LASU", "department": "Social Sciences", "year": "2016", "category": "Non-stem", "male": 795.0, "female": 553.0, "total": 1348.0, "academic_male": 0, "academic_female": 0, "nonacademic_male": 9.0, "nonacademic_female": 23.0}, {"institution": "LASU", "department": "Science", "year": "2016", "category": "Stem", "male": 1047.0, "female": 1004.0, "total": 2051.0, "academic_male": 0, "academic_female": 0, "nonacademic_male": 49.0, "nonacademic_female": 43.0}, {"institution": "LASU", "department": "Management Sciences", "year": "2016", "category": "Non-stem", "male": 1242.0, "female": 1088.0, "total": 2330.0, "academic_male": 0, "academic_female": 0, "nonacademic_male": 15.0, "nonacademic_female": 26.0}, {"institution": "LASU", "department": "School of Communication", "year": "2016", "category": "Non-stem", "male": 164.0, "female": 303.0, "total": 467.0, "academic_male": 0, "academic_female": 0, "nonacademic_male": 11.0, "nonacademic_female": 9.0}, {"institution": "LASU", "department": "Transport", "year": "2016", "category": "Non-stem", "male": 115.0, "female": 28.0, "total": 143.0, "academic_male": 0, "academic_female": 0, "nonacademic_male": 6.0, "nonacademic_female": 4.0}, {"institution": "LASU", "department": "School of Agric", "year": "2016", "category": "Stem", "male": 12.0, "female": 12.0, "total": 24.0, "academic_male": 0, "academic_female": 0, "nonacademic_male": 12.0, "nonacademic_female": 6.0}];
+
+const institution = document.getElementById('institution');
+const year = document.getElementById('year');
+const category = document.getElementById('category');
+
+function unique(field){
+  return [...new Set(DATA.map(d=>d[field]))].sort();
+}
+function options(select, values, all=true){
+  select.innerHTML=(all?'<option value="ALL">All</option>':'')+
+    values.map(v=>`<option value="${String(v).replaceAll('"','&quot;')}">${v}</option>`).join('');
+}
+options(institution, unique('institution'));
+options(year, unique('year'));
+options(category, unique('category'));
+
+function filtered(){
+  return DATA.filter(d =>
+    (institution.value==='ALL'||d.institution===institution.value) &&
+    (year.value==='ALL'||d.year===year.value) &&
+    (category.value==='ALL'||d.category===category.value)
+  );
+}
+function sum(rows,key){return rows.reduce((a,d)=>a+(Number(d[key])||0),0)}
+function fmt(n){return Math.round(n).toLocaleString()}
+function pearson(rows){
+  const x=rows.map(d=>d.male), y=rows.map(d=>d.female);
+  if(x.length<2)return null;
+  const mx=x.reduce((a,b)=>a+b,0)/x.length, my=y.reduce((a,b)=>a+b,0)/y.length;
+  const num=x.reduce((s,v,i)=>s+(v-mx)*(y[i]-my),0);
+  const dx=Math.sqrt(x.reduce((s,v)=>s+(v-mx)**2,0));
+  const dy=Math.sqrt(y.reduce((s,v)=>s+(v-my)**2,0));
+  return dx&&dy?num/(dx*dy):null;
+}
+function render(){
+  const rows=filtered();
+  const total=sum(rows,'total'), female=sum(rows,'female'), male=sum(rows,'male');
+  document.getElementById('kTotal').textContent=fmt(total);
+  document.getElementById('kFemale').textContent=fmt(female);
+  document.getElementById('kMale').textContent=fmt(male);
+  document.getElementById('kShare').textContent=total?(female/total*100).toFixed(1)+'%':'—';
+
+  Plotly.react('genderPlot',[{x:['Male','Female'],y:[male,female],type:'bar'}],
+    {margin:{t:10,l:45,r:10,b:45},yaxis:{title:'Students'},paper_bgcolor:'transparent',plot_bgcolor:'transparent'});
+  const dept={};
+  rows.forEach(d=>{dept[d.department]??={m:0,f:0};dept[d.department].m+=d.male;dept[d.department].f+=d.female});
+  const names=Object.keys(dept), shares=names.map(n=>dept[n].m+dept[n].f?dept[n].f/(dept[n].m+dept[n].f)*100:0);
+  Plotly.react('deptPlot',[{x:shares,y:names,type:'bar',orientation:'h',text:shares.map(v=>v.toFixed(1)+'%'),textposition:'auto'}],
+    {margin:{t:10,l:120,r:30,b:45},xaxis:{title:'Female %',range:[0,100]},paper_bgcolor:'transparent',plot_bgcolor:'transparent'});
+  const cats={}; rows.forEach(d=>{cats[d.category]??=0;cats[d.category]+=d.total});
+  Plotly.react('categoryPlot',[{labels:Object.keys(cats),values:Object.values(cats),type:'pie',hole:.45}],
+    {margin:{t:10,l:10,r:10,b:10},paper_bgcolor:'transparent'});
+  const r=pearson(rows);
+  Plotly.react('corrPlot',[{x:rows.map(d=>d.male),y:rows.map(d=>d.female),text:rows.map(d=>d.department),mode:'markers',type:'scatter'}],
+    {margin:{t:10,l:50,r:10,b:50},xaxis:{title:'Male students'},yaxis:{title:'Female students'},annotations:r===null?[]:[{x:.5,y:1.08,xref:'paper',yref:'paper',text:'Pearson r = '+r.toFixed(3),showarrow:false,font:{size:14}}],paper_bgcolor:'transparent',plot_bgcolor:'transparent'});
+}
+[institution,year,category].forEach(s=>s.addEventListener('change',render));
+render();
+</script>
+</body>
 </html>
