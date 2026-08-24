@@ -2,194 +2,910 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Chaos Theory Feature Dashboard</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <!-- Chart.js core -->
-  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-  <!-- Chart.js plugins -->
-  <script src="https://cdn.jsdelivr.net/npm/chartjs-chart-matrix@1.2.0"></script>
-  <script src="https://cdn.jsdelivr.net/npm/chartjs-chart-boxplot@4.2.0"></script>
+  <title>Chaos Theory Feature Dashboard</title>
+
+  <!-- Stable Chart.js version -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.4/dist/chart.umd.min.js"></script>
+
   <style>
-    body { font-family: Arial, sans-serif; margin: 20px; background: #f4f4f9; color: #333; }
-    h1 { text-align: center; color: #222; }
-    .chart-container { width: 85%; margin: 40px auto; }
-    table { border-collapse: collapse; margin: auto; }
-    th, td { padding: 8px 12px; border: 1px solid #ccc; }
-    footer { text-align: center; margin-top: 40px; }
-    a { color: #0066cc; text-decoration: none; }
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      margin: 0;
+      background: #f4f6f9;
+      color: #222;
+    }
+
+    header {
+      background: #111827;
+      color: white;
+      padding: 35px 20px;
+      text-align: center;
+    }
+
+    header h1 {
+      margin: 0 0 10px;
+      font-size: 30px;
+    }
+
+    header p {
+      margin: 0;
+      color: #d1d5db;
+    }
+
+    .dashboard {
+      width: 92%;
+      max-width: 1200px;
+      margin: 30px auto;
+    }
+
+    .chart-card {
+      background: white;
+      border-radius: 12px;
+      padding: 20px;
+      margin: 25px 0;
+      box-shadow: 0 3px 12px rgba(0,0,0,0.08);
+    }
+
+    .chart-wrapper {
+      position: relative;
+      height: 420px;
+      width: 100%;
+    }
+
+    .small-chart {
+      height: 350px;
+    }
+
+    h2 {
+      margin-top: 0;
+      font-size: 20px;
+      color: #111827;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      overflow-x: auto;
+    }
+
+    th,
+    td {
+      padding: 10px;
+      border: 1px solid #ddd;
+      text-align: center;
+      font-size: 14px;
+    }
+
+    th {
+      background: #111827;
+      color: white;
+    }
+
+    tr:nth-child(even) {
+      background: #f8fafc;
+    }
+
+    .heatmap {
+      display: grid;
+      grid-template-columns: 180px repeat(6, 1fr);
+      gap: 2px;
+      margin-top: 20px;
+      overflow-x: auto;
+    }
+
+    .heat-cell {
+      min-height: 55px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 6px;
+      font-size: 12px;
+      border-radius: 3px;
+      text-align: center;
+    }
+
+    .heat-header {
+      background: #111827;
+      color: white;
+      font-weight: bold;
+    }
+
+    .heat-label {
+      background: #e5e7eb;
+      font-weight: bold;
+      justify-content: flex-start;
+      padding-left: 10px;
+    }
+
+    .heat-legend {
+      margin-top: 15px;
+      font-size: 13px;
+      color: #555;
+    }
+
+    footer {
+      text-align: center;
+      padding: 30px;
+      color: #666;
+    }
+
+    footer a {
+      color: #2563eb;
+      text-decoration: none;
+    }
+
+    @media (max-width: 700px) {
+
+      header h1 {
+        font-size: 23px;
+      }
+
+      .dashboard {
+        width: 95%;
+      }
+
+      .chart-wrapper {
+        height: 350px;
+      }
+
+      .heatmap {
+        grid-template-columns: 150px repeat(6, 100px);
+        overflow-x: auto;
+      }
+
+      table {
+        display: block;
+        overflow-x: auto;
+        white-space: nowrap;
+      }
+    }
   </style>
 </head>
+
 <body>
+
+<header>
   <h1>Chaos Theory Image Feature Dashboard</h1>
+  <p>Chest X-Ray Feature Analysis: NORMAL vs PNEUMONIA</p>
+</header>
 
-  <div class="chart-container"><canvas id="pcaChart"></canvas></div>
-  <div class="chart-container"><canvas id="classMeanChart"></canvas></div>
-  <div class="chart-container"><canvas id="chaosChart"></canvas></div>
+<div class="dashboard">
 
-  <div class="chart-container">
+  <!-- PCA -->
+  <div class="chart-card">
+    <h2>PCA Explained Variance</h2>
+    <div class="chart-wrapper">
+      <canvas id="pcaChart"></canvas>
+    </div>
+  </div>
+
+  <!-- Class Distribution -->
+  <div class="chart-card">
+    <h2>Per-Class Mean Distribution</h2>
+    <div class="chart-wrapper small-chart">
+      <canvas id="classMeanChart"></canvas>
+    </div>
+  </div>
+
+  <!-- Radar -->
+  <div class="chart-card">
+    <h2>Chaos & Statistical Features</h2>
+    <div class="chart-wrapper">
+      <canvas id="chaosChart"></canvas>
+    </div>
+  </div>
+
+  <!-- Feature Table -->
+  <div class="chart-card">
     <h2>Feature Comparison</h2>
+
     <table>
       <thead>
         <tr>
-          <th>Class</th><th>FracDim</th><th>Hurst</th><th>FracDim Patch Mean</th>
-          <th>FracDim Patch SD</th><th>Entropy Mean Patch</th><th>Mean Mean Patch</th>
+          <th>Class</th>
+          <th>FracDim</th>
+          <th>Hurst</th>
+          <th>FracDim Patch Mean</th>
+          <th>FracDim Patch SD</th>
+          <th>Entropy Mean Patch</th>
+          <th>Mean Mean Patch</th>
         </tr>
       </thead>
+
       <tbody>
-        <tr><td>NORMAL</td><td>1.8639</td><td>0.7295</td><td>1.4402</td><td>0.1240</td><td>11.118</td><td>0.00180</td></tr>
-        <tr><td>PNEUMONIA</td><td>1.8493</td><td>0.7313</td><td>1.4242</td><td>0.1058</td><td>11.219</td><td>0.00183</td></tr>
+        <tr>
+          <td>NORMAL</td>
+          <td>1.8639</td>
+          <td>0.7295</td>
+          <td>1.4402</td>
+          <td>0.1240</td>
+          <td>11.118</td>
+          <td>0.00180</td>
+        </tr>
+
+        <tr>
+          <td>PNEUMONIA</td>
+          <td>1.8493</td>
+          <td>0.7313</td>
+          <td>1.4242</td>
+          <td>0.1058</td>
+          <td>11.219</td>
+          <td>0.00183</td>
+        </tr>
       </tbody>
     </table>
   </div>
 
-  <div class="chart-container"><canvas id="heatmapChart"></canvas></div>
-  <div class="chart-container"><canvas id="scatterChart"></canvas></div>
-  <div class="chart-container"><canvas id="pairwiseChart"></canvas></div>
-  <div class="chart-container"><canvas id="entropyBoxplot"></canvas></div>
+  <!-- Correlation Heatmap -->
+  <div class="chart-card">
+    <h2>Feature Correlation Heatmap</h2>
 
-  <footer><p>Return to <a href="https://yourcarrdpage.carrd.co" target="_blank">Landing Page</a></p></footer>
+    <div id="heatmap" class="heatmap"></div>
 
-  <script>
-    // PCA
-    new Chart(document.getElementById('pcaChart'), {
-      type: 'bar',
-      data: { labels: ['PC1','PC2','PC3','PC4','PC5','PC6'],
-        datasets: [{ label: 'Explained Variance Ratio',
-          data: [0.3336,0.2824,0.1866,0.0804,0.0669,0.0501],
-          backgroundColor: 'rgba(75,192,192,0.6)' }] },
-      options: { plugins: { title: { display: true, text: 'PCA Explained Variance Ratios' } } }
-    });
+    <div class="heat-legend">
+      Correlations closer to 1 indicate stronger positive relationships.
+    </div>
+  </div>
 
-    // Per-Class Mean
-    new Chart(document.getElementById('classMeanChart'), {
-      type: 'pie',
-      data: { labels: ['NORMAL','PNEUMONIA'],
-        datasets: [{ data: [0.45,0.62],
-          backgroundColor: ['rgba(54,162,235,0.6)','rgba(255,99,132,0.6)'] }] },
-      options: { plugins: { title: { display: true, text: 'Per-Class Mean Distribution' } } }
-    });
+  <!-- Scatter -->
+  <div class="chart-card">
+    <h2>FracDim vs Hurst</h2>
 
-    // Radar
-    new Chart(document.getElementById('chaosChart'), {
-      type: 'radar',
-      data: { labels: ['FracDim','Hurst','FracDim_patch_mean','FracDim_patch_sd','Entropy_mean_patch','Mean_mean_patch'],
-        datasets: [
-          { label: 'NORMAL', data: [1.8639,0.7295,1.4402,0.1240,11.118,0.00180],
-            backgroundColor:'rgba(54,162,235,0.2)', borderColor:'rgba(54,162,235,1)' },
-          { label: 'PNEUMONIA', data: [1.8493,0.7313,1.4242,0.1058,11.219,0.00183],
-            backgroundColor:'rgba(255,99,132,0.2)', borderColor:'rgba(255,99,132,1)' }
-        ] },
-      options: { plugins: { title: { display: true, text: 'Chaos & Statistical Features Comparison' } } }
-    });
+    <div class="chart-wrapper">
+      <canvas id="scatterChart"></canvas>
+    </div>
+  </div>
 
-    // Heatmap
-    const correlationPairs = [
-      {x:'FracDim_patch_sd', y:'FracDim_patch_mean', v:0.6263},
-      {x:'Mean_mean_patch', y:'Entropy_mean_patch', v:0.5808},
-      {x:'Hurst', y:'FracDim', v:0.5642},
-      {x:'Entropy_mean_patch', y:'FracDim', v:0.2775},
-      {x:'Entropy_mean_patch', y:'Hurst', v:0.2713},
-      {x:'Entropy_mean_patch', y:'FracDim_patch_sd', v:0.2220},
-      {x:'Mean_mean_patch', y:'Hurst', v:0.1733},
-      {x:'Mean_mean_patch', y:'FracDim', v:0.1064},
-      {x:'FracDim_patch_mean', y:'Hurst', v:0.0763},
-      {x:'FracDim_patch_sd', y:'Hurst', v:0.0693},
-      {x:'FracDim_patch_mean', y:'FracDim', v:0.0690},
-      {x:'Entropy_mean_patch', y:'FracDim_patch_mean', v:0.0468},
-      {x:'Mean_mean_patch', y:'FracDim_patch_sd', v:0.0281},
-      {x:'FracDim_patch_sd', y:'FracDim', v:0.0157},
-      {x:'Mean_mean_patch', y:'FracDim_patch_mean', v:0.00017}
-    ];
-    new Chart(document.getElementById('heatmapChart'), {
-      type: 'matrix',
-      data: { datasets: [{
-        label: 'Correlation Heatmap',
-        data: correlationPairs.map(p=>({x:p.x,y:p.y,v:p.v})),
-        backgroundColor(ctx){ const v=ctx.dataset.data[ctx.dataIndex].v; return `rgba(255,0,0,${Math.min(1,v*2)})`; },
-        width: ({chart})=>chart.chartArea.width/6,
-        height: ({chart})=>chart.chartArea.height/6
-      }]},
-      options: {
-        plugins:{ title:{display:true,text:'Feature Correlation Heatmap'},
-          tooltip:{callbacks:{label:ctx=>`Correlation: ${ctx.dataset.data[ctx.dataIndex].v.toFixed(3)}`}}},
-        scales:{ x:{type:'category',labels:[...new Set(correlationPairs.map(p=>p.x))]},
-                 y:{type:'category',labels:[...new Set(correlationPairs.map(p=>p.y))]} }
-      }
-    });
+  <!-- Pairwise Correlation -->
+  <div class="chart-card">
+    <h2>Pairwise Feature Correlations</h2>
 
-    // Scatter
-    new Chart(document.getElementById('scatterChart'), {
-      type: 'scatter',
-      data: { datasets: [
-        { label:'NORMAL', data:[{x:1.8639,y:0.7295}], backgroundColor:'rgba(54,162,235,0.8)' },
-        { label:'PNEUMONIA', data:[{x:1.8493,y:0.7313}], backgroundColor:'rgba(255,99,132,0.8)' }
-      ]},
-      options: { plugins:{ title:{display:true,text:'Separability Scatter Plot (FracDim vs Hurst)'} },
-        scales:{ x:{title:{display:true,text:'FracDim'}}, y:{title:{display:true,text:'Hurst'}} }
-      }
-    });
+    <div class="chart-wrapper">
+      <canvas id="pairwiseChart"></canvas>
+    </div>
+  </div>
 
-        // Pairwise Correlation
-    const pairwiseLabels = [
-      'FracDim_patch_mean vs FracDim_patch_sd',
-      'Entropy_mean_patch vs Mean_mean_patch',
-      'FracDim vs Hurst',
-      'FracDim vs Entropy_mean_patch',
-      'Hurst vs Entropy_mean_patch',
-      'FracDim_patch_sd vs Entropy_mean_patch',
-      'Hurst vs Mean_mean_patch',
-      'FracDim vs Mean_mean_patch',
-      'Hurst vs FracDim_patch_mean',
-      'Hurst vs FracDim_patch_sd',
-      'FracDim vs FracDim_patch_mean',
-      'FracDim_patch_mean vs Entropy_mean_patch',
-      'FracDim_patch_sd vs Mean_mean_patch',
-      'FracDim vs FracDim_patch_sd',
-      'FracDim_patch_mean vs Mean_mean_patch'
-    ];
+  <!-- Entropy Distribution -->
+  <div class="chart-card">
+    <h2>Entropy Distribution</h2>
 
-    const pairwiseValues = [
-      0.6263, 0.5808, 0.5642, 0.2775, 0.2713, 0.2220,
-      0.1733, 0.1064, 0.0763, 0.0693, 0.0690, 0.0468,
-      0.0281, 0.0157, 0.00017
-    ];
+    <div class="chart-wrapper small-chart">
+      <canvas id="entropyChart"></canvas>
+    </div>
+  </div>
 
-    new Chart(document.getElementById('pairwiseChart'), {
-      type: 'bar',
-      data: {
-        labels: pairwiseLabels,
-        datasets: [{
-          label: 'Correlation Strength',
-          data: pairwiseValues,
-          backgroundColor: 'rgba(153,102,255,0.6)'
-        }]
+</div>
+
+<footer>
+  <p>
+    Chaos Theory Image Feature Research Dashboard
+  </p>
+
+  <p>
+    <a href="https://temmidhire.github.io" target="_blank">
+      Return to Portfolio
+    </a>
+  </p>
+</footer>
+
+
+<script>
+
+  /* =====================================================
+     1. PCA
+  ===================================================== */
+
+  new Chart(document.getElementById("pcaChart"), {
+
+    type: "bar",
+
+    data: {
+      labels: [
+        "PC1",
+        "PC2",
+        "PC3",
+        "PC4",
+        "PC5",
+        "PC6"
+      ],
+
+      datasets: [{
+        label: "Explained Variance Ratio",
+
+        data: [
+          0.3336,
+          0.2824,
+          0.1866,
+          0.0804,
+          0.0669,
+          0.0501
+        ],
+
+        backgroundColor: "rgba(54, 162, 235, 0.65)"
+      }]
+    },
+
+    options: {
+
+      responsive: true,
+
+      maintainAspectRatio: false,
+
+      plugins: {
+        legend: {
+          display: false
+        },
+
+        title: {
+          display: true,
+          text: "PCA Explained Variance Ratios"
+        }
       },
-      options: {
-        indexAxis: 'y',
-        plugins: { title: { display: true, text: 'Pairwise Feature Correlations' } },
-        scales: { x: { min:0, max:1, title:{display:true,text:'Correlation'} } }
-      }
-    });
 
-    // Entropy Boxplot (mocked ranges around mean values)
-    new Chart(document.getElementById('entropyBoxplot'), {
-      type: 'boxplot',
-      data: {
-        labels: ['NORMAL','PNEUMONIA'],
-        datasets: [{
-          label: 'Entropy Distribution',
+      scales: {
+
+        y: {
+          beginAtZero: true,
+
+          title: {
+            display: true,
+            text: "Explained Variance"
+          }
+        }
+      }
+    }
+  });
+
+
+  /* =====================================================
+     2. CLASS MEAN
+  ===================================================== */
+
+  new Chart(document.getElementById("classMeanChart"), {
+
+    type: "doughnut",
+
+    data: {
+
+      labels: [
+        "NORMAL",
+        "PNEUMONIA"
+      ],
+
+      datasets: [{
+
+        data: [
+          0.45,
+          0.62
+        ],
+
+        backgroundColor: [
+          "rgba(54, 162, 235, 0.75)",
+          "rgba(255, 99, 132, 0.75)"
+        ]
+      }]
+    },
+
+    options: {
+
+      responsive: true,
+
+      maintainAspectRatio: false,
+
+      plugins: {
+
+        title: {
+          display: true,
+          text: "Per-Class Mean Distribution"
+        },
+
+        legend: {
+          position: "bottom"
+        }
+      }
+    }
+  });
+
+
+  /* =====================================================
+     3. CHAOS FEATURES RADAR
+  ===================================================== */
+
+  new Chart(document.getElementById("chaosChart"), {
+
+    type: "radar",
+
+    data: {
+
+      labels: [
+        "FracDim",
+        "Hurst",
+        "FracDim Patch Mean",
+        "FracDim Patch SD",
+        "Entropy Mean Patch",
+        "Mean Mean Patch"
+      ],
+
+      datasets: [
+
+        {
+          label: "NORMAL",
+
           data: [
-            {min:10.9, q1:11.0, median:11.12, q3:11.2, max:11.3},
-            {min:11.0, q1:11.1, median:11.22, q3:11.3, max:11.4}
+            1.8639,
+            0.7295,
+            1.4402,
+            0.1240,
+            11.118,
+            0.00180
           ],
-          backgroundColor: ['rgba(54,162,235,0.6)','rgba(255,99,132,0.6)']
-        }]
+
+          backgroundColor: "rgba(54, 162, 235, 0.20)",
+
+          borderColor: "rgba(54, 162, 235, 1)",
+
+          borderWidth: 2
+        },
+
+        {
+          label: "PNEUMONIA",
+
+          data: [
+            1.8493,
+            0.7313,
+            1.4242,
+            0.1058,
+            11.219,
+            0.00183
+          ],
+
+          backgroundColor: "rgba(255, 99, 132, 0.20)",
+
+          borderColor: "rgba(255, 99, 132, 1)",
+
+          borderWidth: 2
+        }
+
+      ]
+    },
+
+    options: {
+
+      responsive: true,
+
+      maintainAspectRatio: false,
+
+      scales: {
+
+        r: {
+          beginAtZero: true
+        }
       },
-      options: {
-        plugins: { title: { display: true, text: 'Entropy Boxplot (NORMAL vs PNEUMONIA)' } }
+
+      plugins: {
+
+        title: {
+          display: true,
+          text: "Chaos & Statistical Features Comparison"
+        }
       }
+    }
+  });
+
+
+  /* =====================================================
+     4. CORRELATION HEATMAP
+     
+     Built with HTML/CSS instead of the matrix plugin.
+     This prevents plugin compatibility problems.
+  ===================================================== */
+
+  const features = [
+    "FracDim",
+    "Hurst",
+    "FracDim_patch_mean",
+    "FracDim_patch_sd",
+    "Entropy_mean_patch",
+    "Mean_mean_patch"
+  ];
+
+  const correlations = {
+
+    "FracDim": {
+      "FracDim": 1,
+      "Hurst": 0.5642,
+      "FracDim_patch_mean": 0.0690,
+      "FracDim_patch_sd": 0.0157,
+      "Entropy_mean_patch": 0.2775,
+      "Mean_mean_patch": 0.1064
+    },
+
+    "Hurst": {
+      "FracDim": 0.5642,
+      "Hurst": 1,
+      "FracDim_patch_mean": 0.0763,
+      "FracDim_patch_sd": 0.0693,
+      "Entropy_mean_patch": 0.2713,
+      "Mean_mean_patch": 0.1733
+    },
+
+    "FracDim_patch_mean": {
+      "FracDim": 0.0690,
+      "Hurst": 0.0763,
+      "FracDim_patch_mean": 1,
+      "FracDim_patch_sd": 0.6263,
+      "Entropy_mean_patch": 0.0468,
+      "Mean_mean_patch": 0.00017
+    },
+
+    "FracDim_patch_sd": {
+      "FracDim": 0.0157,
+      "Hurst": 0.0693,
+      "FracDim_patch_mean": 0.6263,
+      "FracDim_patch_sd": 1,
+      "Entropy_mean_patch": 0.2220,
+      "Mean_mean_patch": 0.0281
+    },
+
+    "Entropy_mean_patch": {
+      "FracDim": 0.2775,
+      "Hurst": 0.2713,
+      "FracDim_patch_mean": 0.0468,
+      "FracDim_patch_sd": 0.2220,
+      "Entropy_mean_patch": 1,
+      "Mean_mean_patch": 0.5808
+    },
+
+    "Mean_mean_patch": {
+      "FracDim": 0.1064,
+      "Hurst": 0.1733,
+      "FracDim_patch_mean": 0.00017,
+      "FracDim_patch_sd": 0.0281,
+      "Entropy_mean_patch": 0.5808,
+      "Mean_mean_patch": 1
+    }
+  };
+
+
+  function correlationColor(value) {
+
+    const intensity = Math.round(
+      255 - (value * 180)
+    );
+
+    return `rgb(255, ${intensity}, ${intensity})`;
+  }
+
+
+  const heatmap = document.getElementById("heatmap");
+
+
+  heatmap.innerHTML += `
+    <div class="heat-cell heat-header">
+      Feature
+    </div>
+  `;
+
+  features.forEach(feature => {
+
+    heatmap.innerHTML += `
+      <div class="heat-cell heat-header">
+        ${feature}
+      </div>
+    `;
+
+  });
+
+
+  features.forEach(rowFeature => {
+
+    heatmap.innerHTML += `
+      <div class="heat-cell heat-label">
+        ${rowFeature}
+      </div>
+    `;
+
+    features.forEach(columnFeature => {
+
+      const value =
+        correlations[rowFeature][columnFeature];
+
+      const cell =
+        document.createElement("div");
+
+      cell.className =
+        "heat-cell";
+
+      cell.style.backgroundColor =
+        correlationColor(Math.abs(value));
+
+      cell.textContent =
+        value.toFixed(3);
+
+      cell.title =
+        `${rowFeature} vs ${columnFeature}: ${value}`;
+
+      heatmap.appendChild(cell);
+
     });
-  </script>
+
+  });
+
+
+  /* =====================================================
+     5. SCATTER
+  ===================================================== */
+
+  new Chart(document.getElementById("scatterChart"), {
+
+    type: "scatter",
+
+    data: {
+
+      datasets: [
+
+        {
+          label: "NORMAL",
+
+          data: [
+            {
+              x: 1.8639,
+              y: 0.7295
+            }
+          ],
+
+          backgroundColor:
+            "rgba(54, 162, 235, 0.9)",
+
+          pointRadius: 8
+        },
+
+        {
+          label: "PNEUMONIA",
+
+          data: [
+            {
+              x: 1.8493,
+              y: 0.7313
+            }
+          ],
+
+          backgroundColor:
+            "rgba(255, 99, 132, 0.9)",
+
+          pointRadius: 8
+        }
+
+      ]
+    },
+
+    options: {
+
+      responsive: true,
+
+      maintainAspectRatio: false,
+
+      plugins: {
+
+        title: {
+          display: true,
+          text: "Separability Scatter Plot (FracDim vs Hurst)"
+        }
+      },
+
+      scales: {
+
+        x: {
+
+          title: {
+            display: true,
+            text: "Fractal Dimension"
+          }
+        },
+
+        y: {
+
+          title: {
+            display: true,
+            text: "Hurst Exponent"
+          }
+        }
+      }
+    }
+  });
+
+
+  /* =====================================================
+     6. PAIRWISE CORRELATION
+  ===================================================== */
+
+  const pairwiseLabels = [
+
+    "FracDim Patch Mean vs Patch SD",
+
+    "Entropy vs Mean Patch",
+
+    "FracDim vs Hurst",
+
+    "FracDim vs Entropy",
+
+    "Hurst vs Entropy",
+
+    "Patch SD vs Entropy",
+
+    "Hurst vs Mean Patch",
+
+    "FracDim vs Mean Patch",
+
+    "Hurst vs Patch Mean",
+
+    "Hurst vs Patch SD",
+
+    "FracDim vs Patch Mean",
+
+    "Patch Mean vs Entropy",
+
+    "Patch SD vs Mean Patch",
+
+    "FracDim vs Patch SD",
+
+    "Patch Mean vs Mean Patch"
+  ];
+
+
+  const pairwiseValues = [
+
+    0.6263,
+    0.5808,
+    0.5642,
+    0.2775,
+    0.2713,
+    0.2220,
+    0.1733,
+    0.1064,
+    0.0763,
+    0.0693,
+    0.0690,
+    0.0468,
+    0.0281,
+    0.0157,
+    0.00017
+  ];
+
+
+  new Chart(document.getElementById("pairwiseChart"), {
+
+    type: "bar",
+
+    data: {
+
+      labels: pairwiseLabels,
+
+      datasets: [{
+
+        label: "Correlation Strength",
+
+        data: pairwiseValues,
+
+        backgroundColor:
+          "rgba(153, 102, 255, 0.65)"
+      }]
+    },
+
+    options: {
+
+      indexAxis: "y",
+
+      responsive: true,
+
+      maintainAspectRatio: false,
+
+      plugins: {
+
+        title: {
+          display: true,
+          text: "Pairwise Feature Correlations"
+        },
+
+        legend: {
+          display: false
+        }
+      },
+
+      scales: {
+
+        x: {
+
+          min: 0,
+
+          max: 1,
+
+          title: {
+            display: true,
+            text: "Correlation"
+          }
+        }
+      }
+    }
+  });
+
+
+  /* =====================================================
+     7. ENTROPY DISTRIBUTION
+     
+     Standard bar chart used instead of boxplot plugin.
+     This avoids the boxplot plugin dependency.
+  ===================================================== */
+
+  new Chart(document.getElementById("entropyChart"), {
+
+    type: "bar",
+
+    data: {
+
+      labels: [
+        "NORMAL",
+        "PNEUMONIA"
+      ],
+
+      datasets: [{
+
+        label: "Entropy Mean",
+
+        data: [
+          11.118,
+          11.219
+        ],
+
+        backgroundColor: [
+          "rgba(54, 162, 235, 0.70)",
+          "rgba(255, 99, 132, 0.70)"
+        ]
+      }]
+    },
+
+    options: {
+
+      responsive: true,
+
+      maintainAspectRatio: false,
+
+      plugins: {
+
+        title: {
+          display: true,
+          text: "Mean Entropy: NORMAL vs PNEUMONIA"
+        },
+
+        legend: {
+          display: false
+        }
+      },
+
+      scales: {
+
+        y: {
+
+          beginAtZero: false,
+
+          min: 10.8,
+
+          title: {
+            display: true,
+            text: "Entropy"
+          }
+        }
+      }
+    }
+  });
+
+</script>
+
 </body>
 </html>
 
