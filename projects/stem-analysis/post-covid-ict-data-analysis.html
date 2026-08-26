@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Post-COVID ICT Solutions Data Analysis — Online Learning and Video Conferencing">
+<title>Post-COVID ICT Solutions | Data Analysis Project</title>
+<style>
+:root{
+  --bg:#f7f8fc; --card:#fff; --ink:#182033; --muted:#647087;
+  --accent:#5b5ce2; --accent2:#7c3aed; --line:#e6e8ef; --soft:#eef0ff;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+background:var(--bg);color:var(--ink);line-height:1.65}
+a{color:inherit}
+.container{width:min(1120px,92%);margin:auto}
+nav{position:sticky;top:0;z-index:20;background:rgba(247,248,252,.92);backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}
+.nav-inner{height:68px;display:flex;align-items:center;justify-content:space-between}
+.logo{font-weight:800;letter-spacing:-.02em}.logo span{color:var(--accent)}
+.navlinks{display:flex;gap:22px;font-size:.9rem;color:var(--muted)}
+.navlinks a{text-decoration:none}.navlinks a:hover{color:var(--accent)}
+.hero{padding:86px 0 70px;background:linear-gradient(135deg,#171a35 0%,#34378a 55%,#6845b7 100%);color:white}
+.eyebrow{text-transform:uppercase;letter-spacing:.14em;font-size:.78rem;font-weight:800;color:#cdd0ff}
+h1{font-size:clamp(2.3rem,5vw,4.6rem);line-height:1.02;letter-spacing:-.055em;max-width:900px;margin:16px 0}
+.hero p{font-size:1.08rem;max-width:760px;color:#e3e5f7}
+.tags{display:flex;flex-wrap:wrap;gap:9px;margin-top:28px}
+.tag{padding:7px 12px;border:1px solid rgba(255,255,255,.2);border-radius:999px;background:rgba(255,255,255,.08);font-size:.84rem}
+section{padding:70px 0}
+.section-title{font-size:2rem;letter-spacing:-.035em;margin:0 0 10px}
+.section-intro{color:var(--muted);max-width:760px;margin:0 0 30px}
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.grid2{display:grid;grid-template-columns:repeat(2,1fr);gap:20px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:25px;box-shadow:0 8px 30px rgba(30,35,70,.05)}
+.card h3{margin:0 0 8px;font-size:1.05rem}.card p{margin:0;color:var(--muted)}
+.metric{font-size:2.15rem;font-weight:850;letter-spacing:-.05em;color:var(--accent)}
+.metric-label{color:var(--muted);font-size:.9rem}
+.kicker{font-size:.78rem;text-transform:uppercase;letter-spacing:.1em;font-weight:800;color:var(--accent)}
+.timeline{border-left:2px solid var(--line);padding-left:25px}
+.timeline .step{position:relative;margin-bottom:25px}
+.timeline .step:before{content:"";position:absolute;left:-32px;top:6px;width:12px;height:12px;background:var(--accent);border-radius:50%;box-shadow:0 0 0 5px var(--soft)}
+.table-wrap{overflow-x:auto;background:white;border:1px solid var(--line);border-radius:16px}
+table{width:100%;border-collapse:collapse;min-width:620px}
+th,td{text-align:left;padding:13px 16px;border-bottom:1px solid var(--line)}
+th{background:#fafaff;font-size:.82rem;text-transform:uppercase;letter-spacing:.06em;color:var(--muted)}
+tr:last-child td{border-bottom:0}
+.sig{font-weight:750;color:#087443}.ns{color:#8a5a00;font-weight:650}
+.callout{background:var(--soft);border:1px solid #dfe1ff;border-radius:18px;padding:24px}
+.callout strong{color:#34378a}
+.bar-chart{display:grid;gap:17px;margin-top:20px}
+.bar-row{display:grid;grid-template-columns:145px 1fr 55px;align-items:center;gap:12px;font-size:.9rem}
+.bar{height:12px;background:#e9eaf1;border-radius:99px;overflow:hidden}.fill{height:100%;background:linear-gradient(90deg,var(--accent),var(--accent2));border-radius:99px}
+footer{padding:35px 0;background:#171a35;color:#cdd0dc;font-size:.9rem}
+footer strong{color:white}
+@media(max-width:760px){.navlinks{display:none}.grid,.grid2{grid-template-columns:1fr}.hero{padding:65px 0 55px}.bar-row{grid-template-columns:110px 1fr 45px;font-size:.78rem}section{padding:52px 0}}
+</style>
+</head>
+<body>
+<nav>
+  <div class="container nav-inner">
+    <div class="logo">Data<span>Portfolio</span></div>
+    <div class="navlinks">
+      <a href="#overview">Overview</a><a href="#data">Data</a><a href="#findings">Findings</a>
+      <a href="#statistics">Statistics</a><a href="#conclusion">Conclusion</a>
+    </div>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="container">
+    <div class="eyebrow">Data Analysis · Survey Research · R · Tableau</div>
+    <h1>Post-COVID ICT Solutions in Education &amp; Business</h1>
+    <p>
+      A survey-based analysis of how online learning and video conferencing supported
+      education and business during the COVID-19 disruption, with emphasis on adoption,
+      usability, challenges and future prospects.
+    </p>
+    <div class="tags">
+      <span class="tag">Descriptive Statistics</span>
+      <span class="tag">Chi-Square Test</span>
+      <span class="tag">RStudio 4.04</span>
+      <span class="tag">Tableau</span>
+      <span class="tag">Survey Data</span>
+    </div>
+  </div>
+</header>
+
+<main>
+<section id="overview">
+  <div class="container">
+    <div class="kicker">Project overview</div>
+    <h2 class="section-title">From survey responses to evidence</h2>
+    <p class="section-intro">
+      This project examined ICT adoption after the disruption caused by COVID-19,
+      focusing on online learning among students and video conferencing among working adults.
+      Data was collected online from 14–17 April 2021.
+    </p>
+    <div class="grid">
+      <div class="card"><div class="metric">118</div><div class="metric-label">total participants</div></div>
+      <div class="card"><div class="metric">64</div><div class="metric-label">online learning respondents</div></div>
+      <div class="card"><div class="metric">54</div><div class="metric-label">video conferencing respondents</div></div>
+    </div>
+  </div>
+</section>
+
+<section id="data">
+  <div class="container">
+    <div class="kicker">Dataset &amp; methodology</div>
+    <h2 class="section-title">Two survey populations, one research question</h2>
+    <div class="grid2">
+      <div class="card">
+        <h3>Online learning survey</h3>
+        <p>64 Computer Science students across HND 1–2 and ND 1–2. The study examined participation, ease of use, platform features and challenges associated with online learning.</p>
+      </div>
+      <div class="card">
+        <h3>Video conferencing survey</h3>
+        <p>54 working adults. The analysis examined participation in official duties, reasons for using video conferencing, platform choice and expectations about replacing physical meetings.</p>
+      </div>
+    </div>
+    <div style="height:20px"></div>
+    <div class="card">
+      <h3>Analytical workflow</h3>
+      <div class="timeline" style="margin-top:20px">
+        <div class="step"><strong>1. Survey collection</strong><br><span style="color:var(--muted)">Online questionnaire administered in April 2021.</span></div>
+        <div class="step"><strong>2. Descriptive analysis</strong><br><span style="color:var(--muted)">Response distributions and percentages were visualised using Tableau.</span></div>
+        <div class="step"><strong>3. Inferential analysis</strong><br><span style="color:var(--muted)">Categorical-variable relationships were tested using Pearson's chi-square test in RStudio 4.04.</span></div>
+        <div class="step"><strong>4. Interpretation</strong><br><span style="color:var(--muted)">Significance was assessed using a 0.05 threshold.</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="findings">
+  <div class="container">
+    <div class="kicker">Key findings</div>
+    <h2 class="section-title">What the survey revealed</h2>
+    <p class="section-intro">The descriptive results highlight usability, connectivity and changing attitudes toward digital interaction.</p>
+    <div class="grid2">
+      <div class="card">
+        <h3>Online learning</h3>
+        <div class="bar-chart">
+          <div class="bar-row"><span>Platform participation</span><div class="bar"><div class="fill" style="width:78.1%"></div></div><b>78.1%</b></div>
+          <div class="bar-row"><span>Thoroughly engaged</span><div class="bar"><div class="fill" style="width:48.4%"></div></div><b>48.4%</b></div>
+          <div class="bar-row"><span>User friendliness</span><div class="bar"><div class="fill" style="width:54.2%"></div></div><b>54.2%</b></div>
+          <div class="bar-row"><span>Data/network challenge</span><div class="bar"><div class="fill" style="width:37.5%"></div></div><b>37.5%</b></div>
+        </div>
+      </div>
+      <div class="card">
+        <h3>Video conferencing</h3>
+        <div class="bar-chart">
+          <div class="bar-row"><span>Active in official duties</span><div class="bar"><div class="fill" style="width:74.1%"></div></div><b>74.1%</b></div>
+          <div class="bar-row"><span>Used video conferencing</span><div class="bar"><div class="fill" style="width:59.3%"></div></div><b>59.3%</b></div>
+          <div class="bar-row"><span>Expect replacement of meetings</span><div class="bar"><div class="fill" style="width:73.1%"></div></div><b>73.1%</b></div>
+        </div>
+        <p style="margin-top:22px">Zoom and WhatsApp were reported as the most commonly used platforms.</p>
+      </div>
+    </div>
+    <div style="height:20px"></div>
+    <div class="callout">
+      <strong>Analytical insight:</strong> The descriptive results point to usability and access as important aspects of ICT adoption.
+      For online learning, data/network difficulties were the most prominent reported challenge. For business communication,
+      user friendliness and video calling were among the most selected reasons for use.
+    </div>
+  </div>
+</section>
+
+<section id="statistics">
+  <div class="container">
+    <div class="kicker">Inferential statistics</div>
+    <h2 class="section-title">Pearson's chi-square analysis</h2>
+    <p class="section-intro">
+      The study used Pearson's chi-square test of independence to examine relationships between categorical variables.
+      The null hypothesis states that the variables are independent; p-values below 0.05 indicate statistical significance.
+    </p>
+
+    <h3>Online learning survey</h3>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Comparison</th><th>X²</th><th>df</th><th>p-value</th><th>At α = 0.05</th></tr></thead>
+        <tbody>
+          <tr><td>Data 1</td><td>1.5149</td><td>1</td><td>0.2184</td><td class="ns">Not significant</td></tr>
+          <tr><td>Data 2</td><td>1.4429</td><td>1</td><td>0.2297</td><td class="ns">Not significant</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3 style="margin-top:30px">Video conferencing survey</h3>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Comparison</th><th>X²</th><th>df</th><th>p-value</th><th>At α = 0.05</th></tr></thead>
+        <tbody>
+          <tr><td>Data 1</td><td>0.86846</td><td>1</td><td>0.3514</td><td class="ns">Not significant</td></tr>
+          <tr><td>Data 2</td><td>16.574</td><td>1</td><td>4.68 × 10⁻⁵</td><td class="sig">Significant</td></tr>
+          <tr><td>Data 3</td><td>2.2797</td><td>1</td><td>0.1311</td><td class="ns">Not significant</td></tr>
+          <tr><td>Data 4</td><td>8.736</td><td>1</td><td>0.00312</td><td class="sig">Significant</td></tr>
+          <tr><td>Data 5</td><td>15.947</td><td>1</td><td>6.515 × 10⁻⁵</td><td class="sig">Significant</td></tr>
+          <tr><td>Data 6</td><td>3.328</td><td>1</td><td>0.06811</td><td class="ns">Not significant</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="callout" style="margin-top:25px">
+      <strong>Statistical reading:</strong> Based on the reported p-values and a 0.05 significance threshold,
+      neither of the two online-learning comparisons is statistically significant. In the video-conferencing survey,
+      Data 2, Data 4 and Data 5 are statistically significant, while Data 1, Data 3 and Data 6 are not.
+      The source document's narrative conclusion describes broader relationships, but the portfolio presentation above
+      follows the reported p-values directly.
+    </div>
+  </div>
+</section>
+
+<section id="conclusion">
+  <div class="container">
+    <div class="kicker">Project outcome</div>
+    <h2 class="section-title">What this analysis demonstrates</h2>
+    <div class="grid">
+      <div class="card"><h3>Survey analytics</h3><p>Translated questionnaire responses into measurable adoption, usability and challenge indicators.</p></div>
+      <div class="card"><h3>Visual analytics</h3><p>Used descriptive visualisations to communicate patterns across education and business respondents.</p></div>
+      <div class="card"><h3>Statistical testing</h3><p>Applied Pearson's chi-square test in R to evaluate relationships between categorical variables.</p></div>
+    </div>
+    <div class="card" style="margin-top:20px">
+      <h3>Research conclusion</h3>
+      <p>
+        The study examined how ICT solutions helped sustain education and business activities when physical meetings
+        were restricted. Its findings highlight both the adoption of digital tools and the practical challenges that
+        influence continued use, particularly around access, network/data constraints and platform usability.
+      </p>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="container">
+    <strong>Data Analysis Portfolio Project</strong><br>
+    Post-COVID ICT Solutions in Education &amp; Business · Online Learning &amp; Video Conferencing
+  </div>
+</footer>
+</body>
+</html>
